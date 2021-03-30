@@ -4,4 +4,3 @@ function FoodList1 (){
 		this.listItem.push(Food);
 	}
 }
-

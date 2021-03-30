@@ -12,5 +12,7 @@ export default class Food {
     tinhGiaKhuyenMai = () => {
         return (this.giaMon * this.khuyenMai)/100 ;
     }
+
+    
 }
 

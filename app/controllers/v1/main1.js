@@ -4,10 +4,10 @@ document.getElementById("btnThemMon").addEventListener("click", addToList);
 
 const foodList1 = new FoodList1();
 function addToList(){
-	const id = document.getElementById("foodID").value;
-	const ten = document.getElementById("tenMon").value;
-	const loai = document.getElementById("loai").value;
-	const gia = document.getElementById("giaMon").value;
+	const maMon = document.getElementById("foodID").value;
+	const tenMon = document.getElementById("tenMon").value;
+	const loaiMon = document.getElementById("loai").value;
+	const giaMon = document.getElementById("giaMon").value;
 	const khuyenMai = document.getElementById("khuyenMai").value;
 	const tinhTrang = document.getElementById("tinhTrang").value;
 	let hinhAnh = document.getElementById("hinhMon").files[0];
@@ -20,7 +20,7 @@ function addToList(){
 	fileReader.onload = function(event){
 		hinhAnh = event.target.result;
 
-		const food = new Food(id, ten, loai, gia, khuyenMai, tinhTrang, hinhAnh , moTa);
+		const food = new Food(maMon, tenMon, loaiMon, giaMon, khuyenMai, tinhTrang, hinhAnh , moTa);
 		foodList1.addToList(food);
 		showFoodList1(foodList1.listItem);
 
@@ -30,26 +30,26 @@ function addToList(){
 }
 
 
-function showFoodList1(food){
+function showFoodList1(listItem){
 	const tbody = document.getElementById("tbodyFood");
-	var inner= "";
-	// for( let i in foodList1 ){
-	// 	var foodList1 = [i];
+	let inner= "";
+	for( let i = 0 ; i < listItem.length ; i++ ){
+		let list = listItem[i];
 		inner += `
 			<tr>
-				<td>${food.id}</td>
+				<td>${list.maMon}</td>
 				<td>
-					<img src="${food.hinhAnh}">
-					${food.ten}
+					<img src="${list.hinhAnh}">
+					${list.tenMon}
 				</td>
-				<td>${food.loai}</td>
-				<td>${food.gia}</td>
-				<td>${food.khuyenMai}</td>
-				<td>${food.tinhGiaKhuyenMai()}</td>
-				<td>${food.tinhTrang}</td>
+				<td>${list.loaiMon}</td>
+				<td>${list.giaMon}</td>
+				<td>${list.khuyenMai}</td>
+				<td>${list.tinhGiaKhuyenMai()}</td>
+				<td>${list.tinhTrang}</td>
 			</tr>
 		`;
-	// }
+	}
 	tbody.innerHTML = inner;
 
 }
