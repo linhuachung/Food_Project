@@ -1,4 +1,4 @@
-class Food {
+export default class Food {
     constructor(maMon, tenMon, loaiMon, giaMon, khuyenMai , tinhTrang, hinhAnh, moTa) {
         this.maMon = maMon;
         this.tenMon = tenMon;
@@ -14,4 +14,3 @@ class Food {
     }
 }
 
-export default Food;

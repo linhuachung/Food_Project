@@ -1,8 +1,9 @@
-import FoodList1 from "../../models/v1/foodList1.js"
+import Food from "../../models/v1/food.js"
 
-document.getElementById("btnThemMon").addEventListener("click", themMon);
+document.getElementById("btnThemMon").addEventListener("click", addToList);
 
-function themMon(){
+const foodList1 = new FoodList1();
+function addToList(){
 	const id = document.getElementById("foodID").value;
 	const ten = document.getElementById("tenMon").value;
 	const loai = document.getElementById("loai").value;
@@ -19,33 +20,37 @@ function themMon(){
 	fileReader.onload = function(event){
 		hinhAnh = event.target.result;
 
-		const foodList1 = new FoodList1(id, ten, loai, gia, khuyenMai, tinhTrang, hinhAnh , moTa);
-		showFoodList1(foodList1);
+		const food = new Food(id, ten, loai, gia, khuyenMai, tinhTrang, hinhAnh , moTa);
+		foodList1.addToList(food);
+		showFoodList1(foodList1.listItem);
+
+
 	};
 
 }
-function showFoodList1(foodList1){
+
+
+function showFoodList1(food){
 	const tbody = document.getElementById("tbodyFood");
 	var inner= "";
 	// for( let i in foodList1 ){
 	// 	var foodList1 = [i];
 		inner += `
 			<tr>
+				<td>${food.id}</td>
 				<td>
-				${foodList1.id}
-				${foodList1.hinhAnh}
+					<img src="${food.hinhAnh}">
+					${food.ten}
 				</td>
-				<td>
-					${foodList1.ten}
-				</td>
-				<td>${foodList1.loai}</td>
-				<td>${foodList1.gia}</td>
-				<td>${foodList1.khuyenMai}</td>
-				<td>${foodList1.giaKhuyenMai()}</td>
-				<td>${foodList1.tinhTrang}</td>
+				<td>${food.loai}</td>
+				<td>${food.gia}</td>
+				<td>${food.khuyenMai}</td>
+				<td>${food.tinhGiaKhuyenMai()}</td>
+				<td>${food.tinhTrang}</td>
 			</tr>
 		`;
 	// }
 	tbody.innerHTML = inner;
 
 }
+
